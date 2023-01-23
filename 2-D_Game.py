@@ -26,18 +26,17 @@ while True:
             pygame.quit()
             exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if player_rect.collidepoint(event.pos):
+            if player_rect.collidepoint(event.pos) and player_rect.bottom >= 300:
                 player_gravity = -20
        
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE and player_rect.bottom >= 300:
              player_gravity = -20
        
     screen.blit(sky_surface, (0,0)) # Blit = Block image transfer, esesentially putting on surface on another surface
     screen.blit(ground_surface, (0,300))
     pygame.draw.rect(screen, '#c0e8ec', score_rect)
     pygame.draw.rect(screen, '#c0e8ec', score_rect,10)
-    pygame.draw.ellipse(screen, "Brown",pygame.Rect(50,200,100,100))
     screen.blit(score_surf, score_rect)
 
     snail_rect.x -= 4
@@ -48,6 +47,8 @@ while True:
     # Player
     player_gravity += 1
     player_rect.y += player_gravity
+    if player_rect.bottom >= 300:
+        player_rect.bottom = 300
     screen.blit(player_surf, player_rect)
 
 
