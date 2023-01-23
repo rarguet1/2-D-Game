@@ -104,35 +104,6 @@ obstacle_group = pygame.sprite.Group()
 sky_surface = pygame.image.load('graphics/Sky.png').convert() # Convert makes images easier to run for python
 ground_surface = pygame.image.load('graphics/ground.png').convert()
 
-# Obstacles
-# snail_frame_1 = pygame.image.load("graphics/snail/snail1.png").convert_alpha() # Same as convert but also removes alpha values, messy backround stuff
-# snail_frame_2 = pygame.image.load("graphics/snail/snail2.png").convert_alpha()
-# snail_frames = [snail_frame_1, snail_frame_2]
-# snail_frame_index = 0
-# snail_surf = snail_frames[snail_frame_index]
-
-# fly_frame_1 = pygame.image.load("graphics/fly/fly1.png")
-# fly_frame_2 = pygame.image.load("graphics/fly/fly2.png")
-# fly_frames = [fly_frame_1, fly_frame_2]
-# fly_frame_index = 0
-# fly_surf = fly_frames[fly_frame_index]
-
-
-# obstacle_rect_list = []
-
-# player_walk1 = pygame.image.load("graphics/player/player_walk_1.png").convert_alpha()
-# player_walk2 = pygame.image.load("graphics/player/player_walk_2.png").convert_alpha()
-# player_walk = [player_walk1, player_walk2]
-# player_index = 0
-# player_jump = pygame.image.load("graphics/player/jump.png").convert_alpha()
-
-# player_surf = player_walk[player_index]
-# player_rect = player_surf.get_rect(midbottom = (80,300))
-# player_gravity = 0
-
-# player = pygame.sprite.GroupSingle()
-# player.add(Player())
-
 # Intro screen 
 player_stand = pygame.image.load("graphics/player/player_stand.png").convert_alpha()
 player_stand = pygame.transform.rotozoom(player_stand,0,2) #Used to scale image
@@ -148,11 +119,11 @@ game_message_rect = game_message.get_rect(center = (400,320))
 obstacle_timer = pygame.USEREVENT+1
 pygame.time.set_timer(obstacle_timer, 1500)
 
-snail_animation_timer = pygame.USEREVENT + 2
-pygame.time.set_timer(snail_animation_timer, 500)
+# snail_animation_timer = pygame.USEREVENT + 2
+# pygame.time.set_timer(snail_animation_timer, 500)
 
-fly_animation_timer = pygame.USEREVENT + 3
-pygame.time.set_timer(fly_animation_timer, 200)
+# fly_animation_timer = pygame.USEREVENT + 3
+# pygame.time.set_timer(fly_animation_timer, 200)
 
 while True:
     for event in pygame.event.get():
