@@ -73,8 +73,6 @@ class Obstacle(pygame.sprite.Sprite):
         if self.rect.x <= -100:
             self.kill()
 
-        
-
 def display_score():
     current_time = int(pygame.time.get_ticks() / 1000 - start_time)
     score_surf = test_font.render(f'Score: {current_time}', False, (64,64,64))
@@ -82,47 +80,47 @@ def display_score():
     screen.blit(score_surf, score_rect)
     return current_time
 
-def obstacle_movement(obstacle_list):
-    if obstacle_list:
-        for obstacle_rect in obstacle_list:
-            obstacle_rect.x -= 5
-
-            if obstacle_rect.bottom == 300:
-                screen.blit(snail_surf, obstacle_rect)
-            else:
-                screen.blit(fly_surf, obstacle_rect)
-
-        obstacle_list = [obstacle for obstacle in obstacle_list if obstacle.x > -100]
-
-        return obstacle_list
-    else:
-        return []
-
-def collisions(player, obstacles):
-    if obstacles:
-        for obstacle_rect in obstacles:
-            if player.colliderect(obstacle_rect):
-                return False
-    return True
-    
 def collision_sprite():
     if pygame.sprite.spritecollide(player.sprite, obstacle_group, False):
         obstacle_group.empty()
         return False
     return True
 
-def player_animation():
-    global player_surf, player_index
+# def obstacle_movement(obstacle_list):
+#     if obstacle_list:
+#         for obstacle_rect in obstacle_list:
+#             obstacle_rect.x -= 5
 
-    if player_rect.bottom < 300:
-        player_surf = player_jump
-    else:
-        player_index += 0.1
-        if player_index >= len(player_walk):player_index = 0
-        player_surf = player_walk[int(player_index)]
+#             if obstacle_rect.bottom == 300:
+#                 screen.blit(snail_surf, obstacle_rect)
+#             else:
+#                 screen.blit(fly_surf, obstacle_rect)
 
-    #play walking animation if player on floor
-    # display the jump surface when player in not on floor
+#         obstacle_list = [obstacle for obstacle in obstacle_list if obstacle.x > -100]
+
+#         return obstacle_list
+#     else:
+#         return []
+
+# def collisions(player, obstacles):
+#     if obstacles:
+#         for obstacle_rect in obstacles:
+#             if player.colliderect(obstacle_rect):
+#                 return False
+#     return True
+
+# def player_animation():
+#     global player_surf, player_index
+
+#     if player_rect.bottom < 300:
+#         player_surf = player_jump
+#     else:
+#         player_index += 0.1
+#         if player_index >= len(player_walk):player_index = 0
+#         player_surf = player_walk[int(player_index)]
+
+#     #play walking animation if player on floor
+#     # display the jump surface when player in not on floor
 
 pygame.init()
 screen = pygame.display.set_mode((800, 400))
