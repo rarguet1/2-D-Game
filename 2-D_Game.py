@@ -6,7 +6,7 @@ screen = pygame.display.set_mode((800, 400))
 pygame.display.set_caption("Runner")
 clock = pygame.time.Clock()
 
-test_surface = pygame.Surface((100,200))
+sky_surface = pygame.image.load('graphics/Sky.png')
 
 while True:
     for event in pygame.event.get():
@@ -14,6 +14,6 @@ while True:
             pygame.quit()
             exit()
     
-    screen.blit(surface, pos) #
+    screen.blit(test_surface, (0,0)) # Blit = Block image transfer, esesentially putting on surface on another surface
     pygame.display.update()
     clock.tick(60)
