@@ -119,12 +119,6 @@ game_message_rect = game_message.get_rect(center = (400,320))
 obstacle_timer = pygame.USEREVENT+1
 pygame.time.set_timer(obstacle_timer, 1500)
 
-# snail_animation_timer = pygame.USEREVENT + 2
-# pygame.time.set_timer(snail_animation_timer, 500)
-
-# fly_animation_timer = pygame.USEREVENT + 3
-# pygame.time.set_timer(fly_animation_timer, 200)
-
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -199,9 +193,7 @@ while True:
     else:
         screen.fill((94,129,162))
         screen.blit(player_stand, player_stand_rect)
-        obstacle_rect_list.clear()
-        player_rect.midbottom = (80,300)
-        player_gravity = 0
+        
 
         score_message = test_font.render(f"Your score: {score}", False,(111,196, 169))
         score_message_rect = score_message.get_rect(center = (400,330))
