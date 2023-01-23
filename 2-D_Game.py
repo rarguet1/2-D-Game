@@ -86,42 +86,6 @@ def collision_sprite():
         return False
     return True
 
-# def obstacle_movement(obstacle_list):
-#     if obstacle_list:
-#         for obstacle_rect in obstacle_list:
-#             obstacle_rect.x -= 5
-
-#             if obstacle_rect.bottom == 300:
-#                 screen.blit(snail_surf, obstacle_rect)
-#             else:
-#                 screen.blit(fly_surf, obstacle_rect)
-
-#         obstacle_list = [obstacle for obstacle in obstacle_list if obstacle.x > -100]
-
-#         return obstacle_list
-#     else:
-#         return []
-
-# def collisions(player, obstacles):
-#     if obstacles:
-#         for obstacle_rect in obstacles:
-#             if player.colliderect(obstacle_rect):
-#                 return False
-#     return True
-
-# def player_animation():
-#     global player_surf, player_index
-
-#     if player_rect.bottom < 300:
-#         player_surf = player_jump
-#     else:
-#         player_index += 0.1
-#         if player_index >= len(player_walk):player_index = 0
-#         player_surf = player_walk[int(player_index)]
-
-#     #play walking animation if player on floor
-#     # display the jump surface when player in not on floor
-
 pygame.init()
 screen = pygame.display.set_mode((800, 400))
 pygame.display.set_caption("Runner")
@@ -140,37 +104,34 @@ obstacle_group = pygame.sprite.Group()
 sky_surface = pygame.image.load('graphics/Sky.png').convert() # Convert makes images easier to run for python
 ground_surface = pygame.image.load('graphics/ground.png').convert()
 
-# score_surf = test_font.render("My game", False, (64,64,64)) # AA = antialiasing, smoothing text
-# score_rect = score_surf.get_rect(center = (400,50))
-
 # Obstacles
-snail_frame_1 = pygame.image.load("graphics/snail/snail1.png").convert_alpha() # Same as convert but also removes alpha values, messy backround stuff
-snail_frame_2 = pygame.image.load("graphics/snail/snail2.png").convert_alpha()
-snail_frames = [snail_frame_1, snail_frame_2]
-snail_frame_index = 0
-snail_surf = snail_frames[snail_frame_index]
+# snail_frame_1 = pygame.image.load("graphics/snail/snail1.png").convert_alpha() # Same as convert but also removes alpha values, messy backround stuff
+# snail_frame_2 = pygame.image.load("graphics/snail/snail2.png").convert_alpha()
+# snail_frames = [snail_frame_1, snail_frame_2]
+# snail_frame_index = 0
+# snail_surf = snail_frames[snail_frame_index]
 
-fly_frame_1 = pygame.image.load("graphics/fly/fly1.png")
-fly_frame_2 = pygame.image.load("graphics/fly/fly2.png")
-fly_frames = [fly_frame_1, fly_frame_2]
-fly_frame_index = 0
-fly_surf = fly_frames[fly_frame_index]
+# fly_frame_1 = pygame.image.load("graphics/fly/fly1.png")
+# fly_frame_2 = pygame.image.load("graphics/fly/fly2.png")
+# fly_frames = [fly_frame_1, fly_frame_2]
+# fly_frame_index = 0
+# fly_surf = fly_frames[fly_frame_index]
 
 
-obstacle_rect_list = []
+# obstacle_rect_list = []
 
-player_walk1 = pygame.image.load("graphics/player/player_walk_1.png").convert_alpha()
-player_walk2 = pygame.image.load("graphics/player/player_walk_2.png").convert_alpha()
-player_walk = [player_walk1, player_walk2]
-player_index = 0
-player_jump = pygame.image.load("graphics/player/jump.png").convert_alpha()
+# player_walk1 = pygame.image.load("graphics/player/player_walk_1.png").convert_alpha()
+# player_walk2 = pygame.image.load("graphics/player/player_walk_2.png").convert_alpha()
+# player_walk = [player_walk1, player_walk2]
+# player_index = 0
+# player_jump = pygame.image.load("graphics/player/jump.png").convert_alpha()
 
-player_surf = player_walk[player_index]
-player_rect = player_surf.get_rect(midbottom = (80,300))
-player_gravity = 0
+# player_surf = player_walk[player_index]
+# player_rect = player_surf.get_rect(midbottom = (80,300))
+# player_gravity = 0
 
-player = pygame.sprite.GroupSingle()
-player.add(Player())
+# player = pygame.sprite.GroupSingle()
+# player.add(Player())
 
 # Intro screen 
 player_stand = pygame.image.load("graphics/player/player_stand.png").convert_alpha()
