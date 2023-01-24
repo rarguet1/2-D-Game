@@ -101,7 +101,6 @@ def collision_sprite():
         return False
     else: return True
 
-
 pygame.init()
 screen = pygame.display.set_mode((800,400))
 pygame.display.set_caption('Runner')
@@ -129,8 +128,14 @@ player_stand_rect = player_stand.get_rect(center = (400,200))
 game_name = test_font.render('Foxy Run',False,(0,0,0))
 game_name_rect = game_name.get_rect(center = (400,80))
 
-game_message = test_font.render('Press space to run',False,(0,0,0))
+# Escape instruction
+game_pause_message = test_font.render('Press ESCAPE to pause', False, (0,0,0))
+game_pause_message_rect = game_pause_message.get_rect(center = (400, 370))
+
+# Start Instruction
+game_message = test_font.render('Press SPACE to run',False,(0,0,0))
 game_message_rect = game_message.get_rect(center = (400,330))
+
 
 # Timer 
 obstacle_timer = pygame.USEREVENT + 1
@@ -145,6 +150,7 @@ while True:
         if game_active:
             if event.type == obstacle_timer:
                 obstacle_group.add(Obstacle(choice(['bird','Snake','Snake','Snake'])))
+                
         
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
@@ -172,9 +178,12 @@ while True:
         score_message = test_font.render(f'Your score: {score}',False,(0,0,0))
         score_message_rect = score_message.get_rect(center = (400,330))
         screen.blit(game_name,game_name_rect)
+        screen.blit(game_pause_message, game_pause_message_rect)
 
-        if score == 0: screen.blit(game_message,game_message_rect)
-        else: screen.blit(score_message,score_message_rect)
+        if score == 0: 
+            screen.blit(game_message,game_message_rect)
+        else: 
+            screen.blit(score_message,score_message_rect)
 
     pygame.display.update()
     clock.tick(60)
