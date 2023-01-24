@@ -107,6 +107,7 @@ pygame.display.set_caption('Runner')
 clock = pygame.time.Clock()
 test_font = pygame.font.Font('font/Pixeltype.ttf', 50)
 game_active = False
+game_paused = False
 start_time = 0
 score = 0
 bg_music = pygame.mixer.Sound('audio/music.wav')
@@ -142,20 +143,29 @@ obstacle_timer = pygame.USEREVENT + 1
 pygame.time.set_timer(obstacle_timer,1500)
 
 while True:
+    # Event Handler
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                game_paused = True
+
         if game_active:
             if event.type == obstacle_timer:
                 obstacle_group.add(Obstacle(choice(['bird','Snake','Snake','Snake'])))
                 
-        
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 game_active = True
                 start_time = int(pygame.time.get_ticks() / 1000)
+
+    if game_paused == True:
+        pass
+    elif game_paused == False:
+        screen.blit(game_pause_message, game_pause_message_rect)
 
 
     if game_active:
@@ -170,7 +180,7 @@ while True:
         obstacle_group.update()
 
         game_active = collision_sprite()
-        
+    
     else:
         screen.fill("#005e6a")
         screen.blit(player_stand,player_stand_rect)
