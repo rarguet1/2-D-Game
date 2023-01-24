@@ -2,6 +2,7 @@ import pygame
 from sys import exit
 from random import randint, choice
 
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -93,6 +94,8 @@ def display_score():
     score_surf = test_font.render(f'Score: {current_time}',False,(64,64,64))
     score_rect = score_surf.get_rect(center = (400,50))
     screen.blit(score_surf,score_rect)
+
+
     return current_time
 
 def collision_sprite():
@@ -101,18 +104,36 @@ def collision_sprite():
         return False
     else: return True
 
+
 pygame.init()
 screen = pygame.display.set_mode((800,400))
-pygame.display.set_caption('Runner')
+pygame.display.set_caption('Foxy run')
 clock = pygame.time.Clock()
 test_font = pygame.font.Font('font/Pixeltype.ttf', 50)
 game_active = False
-game_paused = False
 start_time = 0
 score = 0
 bg_music = pygame.mixer.Sound('audio/music.wav')
 bg_music.play(loops = -1)
 
+# Pause
+def pause():
+    loop = True
+    paused_message = test_font.render("Game paused", False, (0,0,0))
+    paused_message_rect = paused_message.get_rect(center = (400, 330))
+    screen.blit(paused_message, paused_message_rect)
+
+    continue_message = test_font.render("Press space to continue", False, (0,0,0))
+    continue_message_rect = continue_message.get_rect(center = (400, 200))
+    screen.blit(continue_message, continue_message_rect)
+    while loop:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                loop = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    loop = False
+                
 #Groups
 player = pygame.sprite.GroupSingle()
 player.add(Player())
@@ -142,6 +163,7 @@ game_message_rect = game_message.get_rect(center = (400,330))
 obstacle_timer = pygame.USEREVENT + 1
 pygame.time.set_timer(obstacle_timer,1500)
 
+game_paused = False
 while True:
     # Event Handler
     for event in pygame.event.get():
@@ -151,7 +173,7 @@ while True:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                game_paused = True
+                pause()
 
         if game_active:
             if event.type == obstacle_timer:
@@ -161,11 +183,6 @@ while True:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 game_active = True
                 start_time = int(pygame.time.get_ticks() / 1000)
-
-    if game_paused == True:
-        pass
-    elif game_paused == False:
-        screen.blit(game_pause_message, game_pause_message_rect)
 
 
     if game_active:
@@ -197,3 +214,5 @@ while True:
 
     pygame.display.update()
     clock.tick(60)
+
+
